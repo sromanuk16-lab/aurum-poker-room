@@ -1,0 +1,10 @@
+{
+  "name": "AURUM Poker Room",
+  "short_name": "AURUM",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050403",
+  "theme_color": "#050403",
+  "orientation": "landscape",
+  "icons": []
+}
