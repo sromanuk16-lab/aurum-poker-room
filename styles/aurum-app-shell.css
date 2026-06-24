@@ -1,12 +1,8 @@
 :root {
   --aurum-bg: #050403;
-  --aurum-panel: rgba(9, 7, 5, 0.78);
-  --aurum-panel-strong: rgba(14, 10, 7, 0.92);
   --aurum-line: rgba(220, 166, 72, 0.42);
   --aurum-line-soft: rgba(220, 166, 72, 0.20);
-  --aurum-gold: #d59a36;
   --aurum-gold-soft: #ffe29a;
-  --aurum-gold-deep: #6e4115;
   --aurum-text: #fff0d2;
   --aurum-muted: rgba(255, 240, 210, 0.68);
   --aurum-dim: rgba(255, 240, 210, 0.42);
@@ -24,11 +20,11 @@ body {
   min-height: 100%;
   background: var(--aurum-bg);
   color: var(--aurum-text);
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100dvh;
-  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -44,26 +40,12 @@ button {
   position: relative;
   width: 100%;
   min-height: 100dvh;
-  overflow: hidden;
+  overflow-x: hidden;
   background:
-    radial-gradient(circle at 50% 18%, rgba(230, 163, 58, 0.20), transparent 28%),
-    radial-gradient(circle at 12% 30%, rgba(255, 204, 105, 0.12), transparent 19%),
-    radial-gradient(circle at 88% 30%, rgba(255, 204, 105, 0.12), transparent 19%),
-    linear-gradient(180deg, #090806 0%, #050403 44%, #030201 100%);
-}
-
-.aurum-shell::before {
-  content: "";
-  position: absolute;
-  inset: 70px 0 auto 0;
-  height: 260px;
-  background:
-    radial-gradient(circle at 22% 42%, rgba(255, 201, 102, 0.22), transparent 7%),
-    radial-gradient(circle at 78% 42%, rgba(255, 201, 102, 0.22), transparent 7%),
-    radial-gradient(ellipse at 50% 60%, rgba(213, 154, 54, 0.14), transparent 44%);
-  filter: blur(6px);
-  opacity: 0.8;
-  pointer-events: none;
+    radial-gradient(circle at 50% 17%, rgba(230, 163, 58, 0.20), transparent 28%),
+    radial-gradient(circle at 12% 29%, rgba(255, 204, 105, 0.10), transparent 20%),
+    radial-gradient(circle at 88% 29%, rgba(255, 204, 105, 0.10), transparent 20%),
+    linear-gradient(180deg, #090806 0%, #050403 46%, #030201 100%);
 }
 
 .aurum-bg-media,
@@ -87,9 +69,7 @@ button {
 .aurum-bg-media.is-ready { opacity: 1; }
 
 .aurum-bg-fallback {
-  background-image: var(--aurum-home-bg-image),
-    radial-gradient(circle at 50% 21%, rgba(214, 166, 75, 0.18), transparent 30%),
-    linear-gradient(180deg, rgba(21, 14, 7, 0.42), rgba(5, 4, 3, 0.94));
+  background-image: var(--aurum-home-bg-image), radial-gradient(circle at 50% 21%, rgba(214,166,75,0.18), transparent 30%), linear-gradient(180deg, rgba(21,14,7,0.42), rgba(5,4,3,0.94));
   background-size: cover;
   background-position: center;
   opacity: 0.70;
@@ -97,63 +77,61 @@ button {
 
 .aurum-bg-shade {
   background:
-    linear-gradient(180deg, rgba(5, 4, 3, 0.34) 0%, rgba(5, 4, 3, 0.18) 30%, rgba(5, 4, 3, 0.88) 82%, rgba(5, 4, 3, 0.96) 100%),
+    linear-gradient(180deg, rgba(5,4,3,0.34) 0%, rgba(5,4,3,0.18) 30%, rgba(5,4,3,0.88) 82%, rgba(5,4,3,0.96) 100%),
     radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.28) 48%, rgba(0,0,0,0.82) 100%);
 }
 
 .aurum-bg-noise {
-  opacity: 0.08;
-  background-image:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 6px);
+  opacity: 0.07;
+  background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 4px), repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 6px);
   mix-blend-mode: overlay;
 }
 
 .aurum-screen {
   position: relative;
   z-index: 2;
-  width: min(100%, 450px);
+  width: min(100%, 430px);
   min-height: 100dvh;
   margin: 0 auto;
-  padding: calc(16px + var(--safe-top)) 16px calc(118px + var(--safe-bottom));
+  padding: calc(14px + var(--safe-top)) 15px calc(142px + var(--safe-bottom));
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .aurum-topbar {
   display: grid;
-  grid-template-columns: 54px 1fr 54px;
+  grid-template-columns: 52px minmax(0, 1fr) 52px;
   gap: 10px;
   align-items: center;
 }
 
 .aurum-avatar,
 .aurum-alert {
-  width: 54px;
-  height: 54px;
+  width: 52px;
+  height: 52px;
   border-radius: 999px;
   display: grid;
   place-items: center;
   background: radial-gradient(circle at 42% 25%, rgba(255,226,160,0.24), rgba(22,16,10,0.72) 48%, rgba(0,0,0,0.82));
-  border: 1px solid rgba(234, 176, 77, 0.36);
-  box-shadow: 0 0 26px rgba(214,166,75,0.14), inset 0 0 16px rgba(214,166,75,0.05);
+  border: 1px solid rgba(234,176,77,0.36);
+  box-shadow: 0 0 22px rgba(214,166,75,0.12), inset 0 0 14px rgba(214,166,75,0.05);
   color: var(--aurum-gold-soft);
   font-size: 22px;
   font-weight: 900;
 }
 
 .aurum-balance {
-  height: 54px;
   min-width: 0;
-  padding: 6px 7px 6px 11px;
+  height: 52px;
+  padding: 6px 7px 6px 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   border-radius: 999px;
-  background: rgba(7, 5, 4, 0.76);
-  border: 1px solid rgba(234, 176, 77, 0.28);
-  box-shadow: inset 0 0 20px rgba(214,166,75,0.06), 0 10px 28px rgba(0,0,0,0.28);
+  background: rgba(7,5,4,0.76);
+  border: 1px solid rgba(234,176,77,0.28);
+  box-shadow: inset 0 0 18px rgba(214,166,75,0.06), 0 10px 24px rgba(0,0,0,0.24);
 }
 
 .coin-medallion {
@@ -165,7 +143,7 @@ button {
   border-radius: 50%;
   color: #1b1004;
   background: linear-gradient(180deg, #ffe49a, #c78925 56%, #7a4714);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.55), 0 0 14px rgba(214,166,75,0.34);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.55), 0 0 14px rgba(214,166,75,0.32);
 }
 
 .balance-copy { min-width: 0; flex: 1; }
@@ -176,118 +154,120 @@ button {
   font-size: 10px;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .aurum-balance strong {
   display: block;
   margin-top: 2px;
-  font-size: 24px;
+  font-size: 23px;
   line-height: 1;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--aurum-text);
+  white-space: nowrap;
 }
 
 .aurum-plus {
   flex: 0 0 auto;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 999px;
   display: grid;
   place-items: center;
   color: #150c03;
   background: linear-gradient(180deg, #ffe29a, #c48522 60%, #764312);
-  font-size: 23px;
+  font-size: 22px;
   font-weight: 950;
-  box-shadow: inset 0 1px rgba(255,255,255,0.55), 0 0 24px rgba(214,166,75,0.26);
+  box-shadow: inset 0 1px rgba(255,255,255,0.55), 0 0 22px rgba(214,166,75,0.24);
 }
 
 .aurum-alert { font-size: 20px; }
 
 .aurum-content {
-  min-height: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.home-content { padding-top: 8px; }
+.home-content { padding-top: 6px; }
 
 .brand-block {
   text-align: center;
-  padding: 6px 4px 6px;
+  padding: 3px 4px 4px;
 }
 
 .brand-star {
   color: var(--aurum-gold-soft);
-  font-size: 35px;
+  font-size: 27px;
   line-height: 1;
-  margin-bottom: 2px;
-  text-shadow: 0 0 24px rgba(214,166,75,0.36);
+  margin-bottom: 1px;
+  text-shadow: 0 0 22px rgba(214,166,75,0.34);
 }
 
 .brand-title {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(64px, 18vw, 86px);
+  font-size: clamp(56px, 16.5vw, 76px);
   line-height: 0.92;
-  letter-spacing: 0.075em;
+  letter-spacing: 0.055em;
   color: transparent;
   background: linear-gradient(180deg, #fff3c0 0%, #dba049 48%, #7e4818 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  text-shadow: 0 0 34px rgba(214,166,75,0.20), 0 8px 20px rgba(0,0,0,0.75);
+  text-shadow: 0 0 30px rgba(214,166,75,0.18), 0 8px 18px rgba(0,0,0,0.70);
+  white-space: nowrap;
 }
 
 .brand-kicker {
   margin-top: 4px;
-  font-size: 13px;
-  letter-spacing: 0.42em;
+  font-size: 12px;
+  letter-spacing: 0.34em;
   color: #d7a85a;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .brand-welcome {
-  margin: 24px 0 2px;
+  margin: 15px 0 2px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.1;
   color: #e8c37a;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .brand-subtitle {
   margin: 0;
   color: rgba(255,240,210,0.78);
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 0.02em;
 }
 
 .primary-cta {
-  min-height: 78px;
+  min-height: 68px;
   width: 100%;
-  padding: 0 26px;
-  border-radius: 24px;
+  padding: 0 18px;
+  border-radius: 23px;
   color: #120a02;
-  background:
-    linear-gradient(180deg, #fff0ac 0%, #d9982f 45%, #a46219 100%),
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.70), transparent 44%);
-  border: 1px solid rgba(255, 222, 143, 0.78);
-  box-shadow: inset 0 2px rgba(255,255,255,0.36), inset 0 -4px rgba(78,39,7,0.25), 0 18px 44px rgba(0,0,0,0.48), 0 0 28px rgba(214,166,75,0.34);
+  background: linear-gradient(180deg, #fff0ac 0%, #d9982f 45%, #a46219 100%), radial-gradient(circle at 50% 0%, rgba(255,255,255,0.70), transparent 44%);
+  border: 1px solid rgba(255,222,143,0.78);
+  box-shadow: inset 0 2px rgba(255,255,255,0.36), inset 0 -4px rgba(78,39,7,0.25), 0 16px 38px rgba(0,0,0,0.44), 0 0 24px rgba(214,166,75,0.30);
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 900;
-  font-size: clamp(27px, 7.8vw, 38px);
-  letter-spacing: 0.10em;
+  font-size: clamp(23px, 6.4vw, 30px);
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 10px;
+  white-space: nowrap;
 }
 
 .primary-cta b {
-  font-size: 48px;
+  font-size: 36px;
   line-height: 1;
   font-family: Inter, sans-serif;
   font-weight: 300;
@@ -295,76 +275,91 @@ button {
 
 .home-action-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 10px;
+  width: 100%;
 }
 
 .home-action-card,
 .list-button,
 .product-card,
 .vip-pass-card,
-.daily-bonus-card,
-.dealer-ceremony-card {
-  border: 1px solid rgba(216, 154, 60, 0.30);
-  background: linear-gradient(180deg, rgba(13, 10, 8, 0.88), rgba(5, 4, 3, 0.82));
-  box-shadow: inset 0 1px rgba(255,255,255,0.05), 0 16px 34px rgba(0,0,0,0.34);
+.daily-bonus-card {
+  border: 1px solid rgba(216,154,60,0.30);
+  background: linear-gradient(180deg, rgba(13,10,8,0.88), rgba(5,4,3,0.82));
+  box-shadow: inset 0 1px rgba(255,255,255,0.05), 0 14px 28px rgba(0,0,0,0.31);
   backdrop-filter: blur(16px);
 }
 
 .home-action-card {
-  min-height: 92px;
-  padding: 15px 12px;
-  border-radius: 20px;
+  min-width: 0;
+  min-height: 82px;
+  padding: 12px 10px;
+  border-radius: 19px;
   display: grid;
-  grid-template-columns: 44px 1fr 14px;
+  grid-template-columns: 32px minmax(0, 1fr) 10px;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-align: left;
+  overflow: hidden;
+}
+
+.home-action-card > span,
+.vip-copy,
+.daily-bonus-card > div {
+  min-width: 0;
 }
 
 .home-action-card strong,
 .vip-copy strong,
-.daily-bonus-card strong,
-.dealer-ceremony-card strong {
+.daily-bonus-card strong {
   display: block;
   font-family: Georgia, "Times New Roman", serif;
   color: var(--aurum-text);
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.12;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .home-action-card small,
 .vip-copy span,
-.daily-bonus-card span,
-.dealer-ceremony-card span {
+.vip-copy small,
+.daily-bonus-card span {
   display: block;
-  margin-top: 5px;
+  margin-top: 4px;
   color: rgba(255,240,210,0.70);
   font-size: 12px;
-  line-height: 1.26;
+  line-height: 1.22;
+}
+
+.vip-copy small {
+  color: #d7a85a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .home-action-card em,
 .vip-arrow {
   color: var(--aurum-gold-soft);
   font-style: normal;
-  font-size: 34px;
+  font-size: 30px;
+  line-height: 1;
   font-weight: 200;
 }
 
 .aurum-icon {
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   color: var(--aurum-gold-soft);
-  text-shadow: 0 0 18px rgba(214,166,75,0.30);
+  text-shadow: 0 0 16px rgba(214,166,75,0.28);
 }
 
 .aurum-icon::before {
-  font-size: 30px;
+  font-size: 25px;
   line-height: 1;
   font-weight: 800;
 }
@@ -380,23 +375,25 @@ button {
 .aurum-icon-gift::before { content: "✦"; }
 
 .vip-pass-card {
-  min-height: 100px;
-  padding: 13px 14px;
-  border-radius: 21px;
+  min-width: 0;
+  min-height: 88px;
+  padding: 12px 12px;
+  border-radius: 20px;
   display: grid;
-  grid-template-columns: 116px 1fr 18px;
-  gap: 13px;
+  grid-template-columns: 94px minmax(0, 1fr) 14px;
+  gap: 11px;
   align-items: center;
+  overflow: hidden;
 }
 
 .vip-ticket {
-  width: 116px;
-  height: 66px;
+  width: 94px;
+  height: 58px;
   border-radius: 13px;
   transform: rotate(-5deg);
-  border: 1px solid rgba(232, 179, 82, 0.52);
+  border: 1px solid rgba(232,179,82,0.52);
   background: radial-gradient(circle at 20% 10%, rgba(255,220,139,0.22), transparent 34%), linear-gradient(145deg, #11100d, #050403);
-  box-shadow: 0 0 28px rgba(214,166,75,0.22);
+  box-shadow: 0 0 24px rgba(214,166,75,0.18);
   display: grid;
   place-items: center;
   text-align: center;
@@ -406,37 +403,31 @@ button {
   display: block;
   color: #f5d88d;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 28px;
+  font-size: 25px;
   line-height: 1;
 }
 
 .vip-ticket small {
   color: #d9a85a;
-  font-size: 10px;
-  letter-spacing: 0.13em;
+  font-size: 9px;
+  letter-spacing: 0.11em;
 }
 
 .daily-bonus-card {
-  min-height: 78px;
-  padding: 13px 14px;
-  border-radius: 19px;
+  min-height: 68px;
+  padding: 11px 12px;
+  border-radius: 18px;
   display: grid;
-  grid-template-columns: 46px 1fr auto;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
 }
 
 .daily-bonus-card time {
   color: var(--aurum-gold-soft);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 22px;
+  font-size: 18px;
   white-space: nowrap;
-}
-
-.dealer-ceremony-card {
-  min-height: 58px;
-  padding: 10px 14px;
-  border-radius: 18px;
 }
 
 .screen-title { padding: 18px 4px 6px; }
@@ -455,7 +446,6 @@ button {
 }
 
 .inner-content { padding-top: 12px; }
-
 .list-panel { display: grid; gap: 10px; }
 
 .list-button,
@@ -472,10 +462,7 @@ button {
 }
 
 .list-button strong,
-.product-card strong {
-  display: block;
-  font-size: 16px;
-}
+.product-card strong { display: block; font-size: 16px; }
 
 .list-button span,
 .product-card span {
@@ -503,22 +490,22 @@ button {
   left: 50%;
   bottom: calc(10px + var(--safe-bottom));
   transform: translateX(-50%);
-  width: min(calc(100% - 20px), 450px);
-  min-height: 78px;
+  width: min(calc(100% - 20px), 430px);
+  min-height: 76px;
   padding: 7px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 4px;
-  border-radius: 26px;
+  border-radius: 25px;
   border: 1px solid rgba(216,154,60,0.32);
-  background: rgba(5, 4, 3, 0.88);
+  background: rgba(5,4,3,0.90);
   box-shadow: 0 22px 50px rgba(0,0,0,0.55), inset 0 1px rgba(255,255,255,0.05);
   backdrop-filter: blur(22px);
 }
 
 .nav-item {
   min-width: 0;
-  border-radius: 20px;
+  border-radius: 19px;
   background: transparent;
   color: rgba(255,240,210,0.45);
   display: grid;
@@ -526,17 +513,11 @@ button {
   gap: 2px;
   font-size: 10px;
   font-weight: 850;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
-.nav-item .aurum-icon {
-  width: 28px;
-  height: 28px;
-}
-
-.nav-item .aurum-icon::before {
-  font-size: 26px;
-}
+.nav-item .aurum-icon { width: 27px; height: 27px; }
+.nav-item .aurum-icon::before { font-size: 25px; }
 
 .nav-item.is-active {
   color: var(--aurum-gold-soft);
@@ -544,26 +525,37 @@ button {
   box-shadow: inset 0 0 0 1px rgba(214,166,75,0.18), 0 0 22px rgba(214,166,75,0.08);
 }
 
-@media (max-width: 380px) {
-  .aurum-screen { padding-left: 12px; padding-right: 12px; }
-  .brand-title { font-size: 58px; }
-  .brand-kicker { letter-spacing: 0.34em; }
-  .primary-cta { min-height: 70px; font-size: 25px; }
-  .home-action-card { min-height: 84px; grid-template-columns: 36px 1fr 10px; }
-  .aurum-icon { width: 36px; height: 36px; }
-  .aurum-icon::before { font-size: 25px; }
-  .home-action-card strong { font-size: 15px; }
-  .vip-pass-card { grid-template-columns: 92px 1fr 12px; }
-  .vip-ticket { width: 92px; height: 58px; }
-  .daily-bonus-card time { font-size: 18px; }
+@media (max-width: 390px) {
+  .aurum-screen { padding-left: 12px; padding-right: 12px; gap: 9px; }
+  .aurum-topbar { grid-template-columns: 48px minmax(0, 1fr) 48px; gap: 8px; }
+  .aurum-avatar, .aurum-alert { width: 48px; height: 48px; }
+  .aurum-balance { height: 48px; gap: 7px; }
+  .coin-medallion { width: 30px; height: 30px; }
+  .aurum-plus { width: 34px; height: 34px; }
+  .aurum-balance strong { font-size: 21px; }
+  .brand-title { font-size: 58px; letter-spacing: 0.045em; }
+  .brand-kicker { font-size: 11px; letter-spacing: 0.30em; }
+  .brand-welcome { margin-top: 10px; font-size: 15px; }
+  .primary-cta { min-height: 64px; font-size: 22px; letter-spacing: 0.055em; }
+  .home-action-card { min-height: 74px; grid-template-columns: 28px minmax(0, 1fr) 8px; padding: 10px 8px; }
+  .aurum-icon { width: 28px; height: 28px; }
+  .aurum-icon::before { font-size: 22px; }
+  .home-action-card strong { font-size: 13px; }
+  .home-action-card small { font-size: 11px; }
+  .vip-pass-card { grid-template-columns: 78px minmax(0, 1fr) 10px; min-height: 76px; }
+  .vip-ticket { width: 78px; height: 50px; }
+  .vip-ticket b { font-size: 21px; }
+  .daily-bonus-card { grid-template-columns: 28px minmax(0, 1fr) auto; }
+  .daily-bonus-card time { font-size: 16px; }
 }
 
 @media (max-height: 760px) {
-  .brand-star { font-size: 26px; }
-  .brand-title { font-size: clamp(54px, 15vw, 70px); }
-  .brand-welcome { margin-top: 12px; font-size: 16px; }
-  .primary-cta { min-height: 66px; }
-  .home-action-card { min-height: 78px; }
-  .vip-pass-card { min-height: 86px; }
-  .daily-bonus-card { min-height: 68px; }
+  .brand-star { font-size: 23px; }
+  .brand-title { font-size: clamp(50px, 14.4vw, 66px); }
+  .brand-welcome { margin-top: 8px; font-size: 14px; }
+  .brand-subtitle { font-size: 13px; }
+  .primary-cta { min-height: 60px; }
+  .home-action-card { min-height: 68px; }
+  .vip-pass-card { min-height: 72px; }
+  .daily-bonus-card { min-height: 62px; }
 }
