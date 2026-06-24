@@ -1,6 +1,30 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-24T18:10:13.906Z",
+  "generatedAt": "2026-06-24T18:14:00.000Z",
   "source": "assets/shop/**/manifest.json",
-  "items": []
+  "items": [
+    {
+      "id": "card_back_royal_gold",
+      "type": "card_back",
+      "name": "Royal Gold",
+      "description": "Luxury black and gold AURUM card back for the first social poker shop test.",
+      "rarity": "rare",
+      "price": {
+        "currency": "aurum_coins",
+        "amount": 2500,
+        "productId": null
+      },
+      "assets": {
+        "preview": "assets/shop/card_backs/royal_gold/preview.svg",
+        "image": "assets/shop/card_backs/royal_gold/card_back.svg"
+      },
+      "layout": {},
+      "effect": {},
+      "tags": ["black_gold", "premium", "starter_shop"],
+      "flags": {},
+      "sort": 100,
+      "basePath": "assets/shop/card_backs/royal_gold",
+      "manifestVersion": 1
+    }
+  ]
 }
