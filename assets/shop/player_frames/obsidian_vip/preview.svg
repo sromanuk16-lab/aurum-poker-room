@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="120" viewBox="0 0 360 120">
+  <rect width="360" height="120" rx="20" fill="#080604" opacity="0.94"/>
+  <rect x="10" y="10" width="340" height="100" rx="16" fill="none" stroke="#d7aa59" stroke-width="4"/>
+  <rect x="24" y="24" width="312" height="72" rx="12" fill="none" stroke="#7d5a28" stroke-width="2"/>
+  <text x="180" y="68" text-anchor="middle" fill="#e9c97a" font-family="serif" font-size="24">OBSIDIAN VIP</text>
+</svg>
