@@ -1,16 +1,15 @@
 :root {
   --aurum-bg: #050403;
-  --aurum-panel: rgba(13, 11, 9, 0.72);
-  --aurum-panel-strong: rgba(18, 14, 10, 0.88);
-  --aurum-line: rgba(214, 166, 75, 0.34);
-  --aurum-line-soft: rgba(214, 166, 75, 0.16);
-  --aurum-gold: #d6a64b;
-  --aurum-gold-soft: #f1cf83;
-  --aurum-text: #f7ead1;
-  --aurum-muted: rgba(247, 234, 209, 0.68);
-  --aurum-dim: rgba(247, 234, 209, 0.42);
-  --aurum-danger: #d45d4d;
-  --aurum-safe: #8ccf9a;
+  --aurum-panel: rgba(9, 7, 5, 0.78);
+  --aurum-panel-strong: rgba(14, 10, 7, 0.92);
+  --aurum-line: rgba(220, 166, 72, 0.42);
+  --aurum-line-soft: rgba(220, 166, 72, 0.20);
+  --aurum-gold: #d59a36;
+  --aurum-gold-soft: #ffe29a;
+  --aurum-gold-deep: #6e4115;
+  --aurum-text: #fff0d2;
+  --aurum-muted: rgba(255, 240, 210, 0.68);
+  --aurum-dim: rgba(255, 240, 210, 0.42);
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -29,13 +28,16 @@ body {
 
 body {
   min-height: 100dvh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 button {
   font: inherit;
   color: inherit;
   border: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .aurum-shell {
@@ -44,9 +46,24 @@ button {
   min-height: 100dvh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 18%, rgba(196, 138, 45, 0.18), transparent 34%),
-    radial-gradient(circle at 12% 12%, rgba(255, 210, 123, 0.10), transparent 25%),
-    linear-gradient(160deg, #050403 0%, #100c08 44%, #050403 100%);
+    radial-gradient(circle at 50% 18%, rgba(230, 163, 58, 0.20), transparent 28%),
+    radial-gradient(circle at 12% 30%, rgba(255, 204, 105, 0.12), transparent 19%),
+    radial-gradient(circle at 88% 30%, rgba(255, 204, 105, 0.12), transparent 19%),
+    linear-gradient(180deg, #090806 0%, #050403 44%, #030201 100%);
+}
+
+.aurum-shell::before {
+  content: "";
+  position: absolute;
+  inset: 70px 0 auto 0;
+  height: 260px;
+  background:
+    radial-gradient(circle at 22% 42%, rgba(255, 201, 102, 0.22), transparent 7%),
+    radial-gradient(circle at 78% 42%, rgba(255, 201, 102, 0.22), transparent 7%),
+    radial-gradient(ellipse at 50% 60%, rgba(213, 154, 54, 0.14), transparent 44%);
+  filter: blur(6px);
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .aurum-bg-media,
@@ -64,82 +81,94 @@ button {
   object-fit: cover;
   opacity: 0;
   transition: opacity 700ms ease;
-  filter: saturate(0.88) contrast(1.06) brightness(0.64);
+  filter: saturate(0.86) contrast(1.08) brightness(0.58);
 }
 
-.aurum-bg-media.is-ready {
-  opacity: 1;
-}
+.aurum-bg-media.is-ready { opacity: 1; }
 
 .aurum-bg-fallback {
   background-image: var(--aurum-home-bg-image),
-    radial-gradient(circle at 50% 18%, rgba(214, 166, 75, 0.20), transparent 31%),
-    linear-gradient(180deg, rgba(26, 17, 8, 0.55), rgba(5, 4, 3, 0.92));
+    radial-gradient(circle at 50% 21%, rgba(214, 166, 75, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(21, 14, 7, 0.42), rgba(5, 4, 3, 0.94));
   background-size: cover;
   background-position: center;
-  opacity: 0.78;
+  opacity: 0.70;
 }
 
 .aurum-bg-shade {
   background:
-    linear-gradient(180deg, rgba(5, 4, 3, 0.55) 0%, rgba(5, 4, 3, 0.18) 35%, rgba(5, 4, 3, 0.92) 100%),
-    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.28) 52%, rgba(0,0,0,0.78) 100%);
+    linear-gradient(180deg, rgba(5, 4, 3, 0.34) 0%, rgba(5, 4, 3, 0.18) 30%, rgba(5, 4, 3, 0.88) 82%, rgba(5, 4, 3, 0.96) 100%),
+    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.28) 48%, rgba(0,0,0,0.82) 100%);
 }
 
 .aurum-bg-noise {
-  opacity: 0.12;
+  opacity: 0.08;
   background-image:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 6px);
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 6px);
   mix-blend-mode: overlay;
 }
 
 .aurum-screen {
   position: relative;
   z-index: 2;
-  width: min(100%, 460px);
+  width: min(100%, 450px);
   min-height: 100dvh;
   margin: 0 auto;
-  padding: calc(16px + var(--safe-top)) 16px calc(84px + var(--safe-bottom));
-  display: grid;
-  grid-template-rows: auto 1fr;
+  padding: calc(16px + var(--safe-top)) 16px calc(118px + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
   gap: 14px;
 }
 
 .aurum-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 54px 1fr 54px;
   gap: 10px;
+  align-items: center;
 }
 
-.aurum-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+.aurum-avatar,
+.aurum-alert {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
   display: grid;
   place-items: center;
+  background: radial-gradient(circle at 42% 25%, rgba(255,226,160,0.24), rgba(22,16,10,0.72) 48%, rgba(0,0,0,0.82));
+  border: 1px solid rgba(234, 176, 77, 0.36);
+  box-shadow: 0 0 26px rgba(214,166,75,0.14), inset 0 0 16px rgba(214,166,75,0.05);
   color: var(--aurum-gold-soft);
-  background: radial-gradient(circle at 40% 24%, rgba(255,226,160,0.30), rgba(93,64,28,0.20) 45%, rgba(0,0,0,0.55));
-  border: 1px solid var(--aurum-line);
-  box-shadow: 0 0 28px rgba(214, 166, 75, 0.15);
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-size: 22px;
+  font-weight: 900;
 }
 
 .aurum-balance {
-  flex: 1;
+  height: 54px;
   min-width: 0;
-  height: 44px;
-  padding: 0 12px;
+  padding: 6px 7px 6px 11px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   border-radius: 999px;
-  background: rgba(9, 7, 5, 0.72);
-  border: 1px solid var(--aurum-line-soft);
-  box-shadow: inset 0 0 18px rgba(214,166,75,0.07);
+  background: rgba(7, 5, 4, 0.76);
+  border: 1px solid rgba(234, 176, 77, 0.28);
+  box-shadow: inset 0 0 20px rgba(214,166,75,0.06), 0 10px 28px rgba(0,0,0,0.28);
 }
+
+.coin-medallion {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #1b1004;
+  background: linear-gradient(180deg, #ffe49a, #c78925 56%, #7a4714);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.55), 0 0 14px rgba(214,166,75,0.34);
+}
+
+.balance-copy { min-width: 0; flex: 1; }
 
 .aurum-balance small {
   display: block;
@@ -147,157 +176,275 @@ button {
   font-size: 10px;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
 }
 
 .aurum-balance strong {
-  font-size: 18px;
-  letter-spacing: 0.04em;
-  color: var(--aurum-gold-soft);
+  display: block;
+  margin-top: 2px;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--aurum-text);
 }
 
-.aurum-plus,
-.aurum-alert {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
+.aurum-plus {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #d6a64b, #77501f);
-  color: #100903;
-  font-weight: 900;
-  box-shadow: 0 7px 18px rgba(0,0,0,0.30), 0 0 18px rgba(214,166,75,0.20);
+  color: #150c03;
+  background: linear-gradient(180deg, #ffe29a, #c48522 60%, #764312);
+  font-size: 23px;
+  font-weight: 950;
+  box-shadow: inset 0 1px rgba(255,255,255,0.55), 0 0 24px rgba(214,166,75,0.26);
 }
 
-.aurum-alert {
-  width: 44px;
-  height: 44px;
-  color: var(--aurum-gold-soft);
-  background: rgba(9, 7, 5, 0.72);
-  border: 1px solid var(--aurum-line-soft);
-}
+.aurum-alert { font-size: 20px; }
 
 .aurum-content {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   gap: 12px;
 }
 
+.home-content { padding-top: 8px; }
+
 .brand-block {
   text-align: center;
-  padding: 42px 8px 20px;
-  margin-top: auto;
+  padding: 6px 4px 6px;
 }
 
-.brand-kicker {
-  font-size: 12px;
-  letter-spacing: 0.3em;
-  color: var(--aurum-muted);
-  text-transform: uppercase;
+.brand-star {
+  color: var(--aurum-gold-soft);
+  font-size: 35px;
+  line-height: 1;
+  margin-bottom: 2px;
+  text-shadow: 0 0 24px rgba(214,166,75,0.36);
 }
 
 .brand-title {
-  margin: 4px 0 4px;
+  margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(52px, 15vw, 78px);
-  line-height: 0.9;
-  letter-spacing: 0.08em;
-  color: var(--aurum-gold-soft);
-  text-shadow: 0 0 30px rgba(214,166,75,0.22), 0 5px 20px rgba(0,0,0,0.70);
+  font-size: clamp(64px, 18vw, 86px);
+  line-height: 0.92;
+  letter-spacing: 0.075em;
+  color: transparent;
+  background: linear-gradient(180deg, #fff3c0 0%, #dba049 48%, #7e4818 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 0 34px rgba(214,166,75,0.20), 0 8px 20px rgba(0,0,0,0.75);
+}
+
+.brand-kicker {
+  margin-top: 4px;
+  font-size: 13px;
+  letter-spacing: 0.42em;
+  color: #d7a85a;
+  text-transform: uppercase;
+}
+
+.brand-welcome {
+  margin: 24px 0 2px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 1.1;
+  color: #e8c37a;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
 }
 
 .brand-subtitle {
   margin: 0;
-  color: var(--aurum-muted);
-  font-size: 14px;
+  color: rgba(255,240,210,0.78);
+  font-size: 15px;
   letter-spacing: 0.02em;
 }
 
 .primary-cta {
-  min-height: 64px;
+  min-height: 78px;
   width: 100%;
-  border-radius: 22px;
-  color: #110b04;
+  padding: 0 26px;
+  border-radius: 24px;
+  color: #120a02;
   background:
-    linear-gradient(180deg, rgba(255,235,172,0.98), rgba(195,132,39,0.98) 55%, rgba(119,74,22,0.98)),
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.75), transparent 40%);
-  box-shadow: 0 18px 42px rgba(0,0,0,0.40), 0 0 28px rgba(214,166,75,0.28);
+    linear-gradient(180deg, #fff0ac 0%, #d9982f 45%, #a46219 100%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.70), transparent 44%);
+  border: 1px solid rgba(255, 222, 143, 0.78);
+  box-shadow: inset 0 2px rgba(255,255,255,0.36), inset 0 -4px rgba(78,39,7,0.25), 0 18px 44px rgba(0,0,0,0.48), 0 0 28px rgba(214,166,75,0.34);
+  font-family: Georgia, "Times New Roman", serif;
   font-weight: 900;
-  font-size: 18px;
-  letter-spacing: 0.14em;
+  font-size: clamp(27px, 7.8vw, 38px);
+  letter-spacing: 0.10em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 }
 
-.card-grid {
+.primary-cta b {
+  font-size: 48px;
+  line-height: 1;
+  font-family: Inter, sans-serif;
+  font-weight: 300;
+}
+
+.home-action-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
-.aurum-card,
-.aurum-wide-card {
-  border-radius: 22px;
-  border: 1px solid var(--aurum-line-soft);
-  background: linear-gradient(180deg, rgba(17, 13, 10, 0.82), rgba(7, 6, 5, 0.72));
-  box-shadow: inset 0 1px rgba(255,255,255,0.05), 0 16px 34px rgba(0,0,0,0.30);
+.home-action-card,
+.list-button,
+.product-card,
+.vip-pass-card,
+.daily-bonus-card,
+.dealer-ceremony-card {
+  border: 1px solid rgba(216, 154, 60, 0.30);
+  background: linear-gradient(180deg, rgba(13, 10, 8, 0.88), rgba(5, 4, 3, 0.82));
+  box-shadow: inset 0 1px rgba(255,255,255,0.05), 0 16px 34px rgba(0,0,0,0.34);
   backdrop-filter: blur(16px);
 }
 
-.aurum-card {
+.home-action-card {
   min-height: 92px;
-  padding: 14px;
-}
-
-.aurum-card strong,
-.aurum-wide-card strong {
-  display: block;
-  color: var(--aurum-text);
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.aurum-card span,
-.aurum-wide-card span {
-  color: var(--aurum-muted);
-  font-size: 12px;
-  line-height: 1.35;
-}
-
-.aurum-wide-card {
-  min-height: 86px;
-  padding: 14px 15px;
-  display: flex;
-  justify-content: space-between;
+  padding: 15px 12px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 44px 1fr 14px;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  text-align: left;
 }
 
-.pass-progress {
-  width: 92px;
-  height: 8px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(214,166,75,0.18);
-}
-
-.pass-progress i {
+.home-action-card strong,
+.vip-copy strong,
+.daily-bonus-card strong,
+.dealer-ceremony-card strong {
   display: block;
-  height: 100%;
-  width: 72%;
-  background: linear-gradient(90deg, #75501d, #f2cf83);
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--aurum-text);
+  font-size: 17px;
+  line-height: 1.12;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
 }
 
-.screen-title {
-  padding: 28px 4px 6px;
+.home-action-card small,
+.vip-copy span,
+.daily-bonus-card span,
+.dealer-ceremony-card span {
+  display: block;
+  margin-top: 5px;
+  color: rgba(255,240,210,0.70);
+  font-size: 12px;
+  line-height: 1.26;
 }
+
+.home-action-card em,
+.vip-arrow {
+  color: var(--aurum-gold-soft);
+  font-style: normal;
+  font-size: 34px;
+  font-weight: 200;
+}
+
+.aurum-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--aurum-gold-soft);
+  text-shadow: 0 0 18px rgba(214,166,75,0.30);
+}
+
+.aurum-icon::before {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.aurum-icon-home::before { content: "⌂"; }
+.aurum-icon-cards::before { content: "♠"; }
+.aurum-icon-cart::before { content: "⌁"; }
+.aurum-icon-diamond::before { content: "◇"; }
+.aurum-icon-profile::before { content: "●"; }
+.aurum-icon-chip::before { content: "◉"; }
+.aurum-icon-lock::before { content: "▣"; }
+.aurum-icon-bag::before { content: "▱"; }
+.aurum-icon-gift::before { content: "✦"; }
+
+.vip-pass-card {
+  min-height: 100px;
+  padding: 13px 14px;
+  border-radius: 21px;
+  display: grid;
+  grid-template-columns: 116px 1fr 18px;
+  gap: 13px;
+  align-items: center;
+}
+
+.vip-ticket {
+  width: 116px;
+  height: 66px;
+  border-radius: 13px;
+  transform: rotate(-5deg);
+  border: 1px solid rgba(232, 179, 82, 0.52);
+  background: radial-gradient(circle at 20% 10%, rgba(255,220,139,0.22), transparent 34%), linear-gradient(145deg, #11100d, #050403);
+  box-shadow: 0 0 28px rgba(214,166,75,0.22);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.vip-ticket b {
+  display: block;
+  color: #f5d88d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.vip-ticket small {
+  color: #d9a85a;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+
+.daily-bonus-card {
+  min-height: 78px;
+  padding: 13px 14px;
+  border-radius: 19px;
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  align-items: center;
+  gap: 11px;
+}
+
+.daily-bonus-card time {
+  color: var(--aurum-gold-soft);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.dealer-ceremony-card {
+  min-height: 58px;
+  padding: 10px 14px;
+  border-radius: 18px;
+}
+
+.screen-title { padding: 18px 4px 6px; }
 
 .screen-title h2 {
   margin: 0 0 6px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 38px;
+  font-size: 40px;
   color: var(--aurum-gold-soft);
 }
 
@@ -307,34 +454,21 @@ button {
   font-size: 14px;
 }
 
-.list-panel {
-  display: grid;
-  gap: 10px;
-}
+.inner-content { padding-top: 12px; }
+
+.list-panel { display: grid; gap: 10px; }
 
 .list-button,
 .product-card {
   width: 100%;
-  min-height: 68px;
+  min-height: 72px;
   padding: 14px 15px;
   border-radius: 20px;
-  border: 1px solid var(--aurum-line-soft);
-  background: rgba(12, 10, 8, 0.74);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   text-align: left;
-}
-
-.card-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.home-content .aurum-wide-card {
-  min-height: 92px;
 }
 
 .list-button strong,
@@ -364,50 +498,72 @@ button {
 }
 
 .bottom-nav {
-  position: absolute;
+  position: fixed;
   z-index: 5;
   left: 50%;
   bottom: calc(10px + var(--safe-bottom));
   transform: translateX(-50%);
-  width: min(calc(100% - 20px), 460px);
-  height: 70px;
+  width: min(calc(100% - 20px), 450px);
+  min-height: 78px;
   padding: 7px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 4px;
-  border-radius: 24px;
-  border: 1px solid var(--aurum-line-soft);
-  background: rgba(7, 5, 4, 0.82);
-  box-shadow: 0 22px 50px rgba(0,0,0,0.50), inset 0 1px rgba(255,255,255,0.05);
-  backdrop-filter: blur(20px);
+  border-radius: 26px;
+  border: 1px solid rgba(216,154,60,0.32);
+  background: rgba(5, 4, 3, 0.88);
+  box-shadow: 0 22px 50px rgba(0,0,0,0.55), inset 0 1px rgba(255,255,255,0.05);
+  backdrop-filter: blur(22px);
 }
 
 .nav-item {
-  border-radius: 18px;
+  min-width: 0;
+  border-radius: 20px;
   background: transparent;
-  color: var(--aurum-dim);
+  color: rgba(255,240,210,0.45);
   display: grid;
   place-items: center;
   gap: 2px;
   font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  font-weight: 850;
+  letter-spacing: 0.03em;
 }
 
-.nav-item .icon {
-  font-size: 20px;
-  line-height: 1;
+.nav-item .aurum-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.nav-item .aurum-icon::before {
+  font-size: 26px;
 }
 
 .nav-item.is-active {
   color: var(--aurum-gold-soft);
-  background: rgba(214,166,75,0.12);
-  box-shadow: inset 0 0 0 1px rgba(214,166,75,0.15);
+  background: rgba(214,166,75,0.15);
+  box-shadow: inset 0 0 0 1px rgba(214,166,75,0.18), 0 0 22px rgba(214,166,75,0.08);
 }
 
-@media (max-height: 720px) {
-  .brand-block { padding-top: 22px; padding-bottom: 12px; }
-  .brand-title { font-size: clamp(46px, 13vw, 62px); }
-  .aurum-card { min-height: 78px; }
-  .aurum-wide-card { min-height: 72px; }
+@media (max-width: 380px) {
+  .aurum-screen { padding-left: 12px; padding-right: 12px; }
+  .brand-title { font-size: 58px; }
+  .brand-kicker { letter-spacing: 0.34em; }
+  .primary-cta { min-height: 70px; font-size: 25px; }
+  .home-action-card { min-height: 84px; grid-template-columns: 36px 1fr 10px; }
+  .aurum-icon { width: 36px; height: 36px; }
+  .aurum-icon::before { font-size: 25px; }
+  .home-action-card strong { font-size: 15px; }
+  .vip-pass-card { grid-template-columns: 92px 1fr 12px; }
+  .vip-ticket { width: 92px; height: 58px; }
+  .daily-bonus-card time { font-size: 18px; }
+}
+
+@media (max-height: 760px) {
+  .brand-star { font-size: 26px; }
+  .brand-title { font-size: clamp(54px, 15vw, 70px); }
+  .brand-welcome { margin-top: 12px; font-size: 16px; }
+  .primary-cta { min-height: 66px; }
+  .home-action-card { min-height: 78px; }
+  .vip-pass-card { min-height: 86px; }
+  .daily-bonus-card { min-height: 68px; }
 }
