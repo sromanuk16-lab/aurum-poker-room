@@ -25,7 +25,7 @@ assets/shop/catalog.generated.json
 
 The HTML/game code must not hard-code shop items.
 
-## AURUM v1 sells overlay content only
+## AURUM v1 sells overlay content first
 
 Allowed v1 products:
 
@@ -38,8 +38,9 @@ Allowed v1 products:
 - profile badges / titles
 - private table / club functions
 - VIP pass / season pass / coin packs
+- Dealer Ceremonies as premium after-hand video events
 
-Blocked in v1:
+Blocked in v1 as normal cheap skins:
 
 - dealer masks
 - new dealers
@@ -47,3 +48,23 @@ Blocked in v1:
 - video table skins
 
 Those blocked items depend on video production and should become a later room-pack pipeline, not the first monetization system.
+
+## Dealer Ceremonies
+
+Dealer Ceremonies are allowed only as expensive after-hand social events. They are not live gameplay actions and they must not interrupt betting.
+
+Required pack:
+
+```text
+assets/shop/dealer_ceremonies/<item_slug>/
+  manifest.json
+  preview.png
+  poster.png
+  seat_0.mp4
+  seat_1.mp4
+  seat_2.mp4
+  seat_3.mp4
+  seat_4.mp4
+```
+
+See `docs/DEALER_CEREMONIES.md` for the full architecture.
