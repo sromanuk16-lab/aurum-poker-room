@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "content:generate": "node scripts/generate-content-catalog.mjs",
+    "content:validate": "node scripts/validate-content.mjs",
     "validate:content": "node scripts/validate-content.mjs"
   }
 }
