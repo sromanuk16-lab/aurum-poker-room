@@ -87,20 +87,24 @@ function topbar() {
 
 function homeScreen() {
   return `
-    <section class="aurum-content">
+    <section class="aurum-content home-content">
       <div class="brand-block">
-        <div class="brand-kicker">Private Poker Club</div>
+        <div class="brand-kicker">PRIVATE POKER CLUB</div>
         <h1 class="brand-title">AURUM</h1>
-        <p class="brand-subtitle">Закрытая комната. Чистая игра. Золото тишины.</p>
+        <p class="brand-subtitle">Приватный покерный клуб</p>
       </div>
       <button class="primary-cta" data-action="play">Быстрый вход</button>
-      <article class="aurum-wide-card">
-        <div><strong>BLACK PASS LVL 7</strong><span>VIP прогресс 7 250 / 10 000</span></div>
-        <div class="pass-progress"><i></i></div>
-      </article>
-      <div class="card-grid">
-        <article class="aurum-card"><strong>Ежедневный бонус</strong><span>Забери награду за вход сегодня.</span></article>
-        <article class="aurum-card"><strong>Dealer Ceremony</strong><span>Премиальная реакция после руки.</span></article>
+      <div class="card-stack">
+        <article class="aurum-wide-card">
+          <div><strong>BLACK PASS LVL 7</strong><span>VIP прогресс 7 250 / 10 000</span></div>
+          <div class="pass-progress"><i></i></div>
+        </article>
+        <article class="aurum-wide-card">
+          <div><strong>Ежедневный бонус</strong><span>Забери награду за вход сегодня.</span></div>
+        </article>
+        <article class="aurum-wide-card">
+          <div><strong>Dealer Ceremony</strong><span>Премиальная реакция после руки.</span></div>
+        </article>
       </div>
     </section>
   `;
