@@ -2,7 +2,9 @@
 
 This is the foundation for the AURUM shop, inventory and cosmetics.
 
-The current AURUM poker room uses a cinematic video/background scene. The dealer, room, table, chairs, lamps and mask are part of that scene. Because of that, v1 must sell only overlay content that can be rendered above the video without changing the video itself.
+The current AURUM poker room uses a cinematic video/background scene. The dealer, room, table, chairs, lamps and mask are part of that scene. Because of that, v1 must sell mostly overlay content that can be rendered above the video without changing the video itself.
+
+There is one premium video exception: Dealer Ceremonies. They are not skins and not live gameplay actions. They are prepared after-hand video events.
 
 ## What AURUM v1 sells
 
@@ -17,8 +19,9 @@ The current AURUM poker room uses a cinematic video/background scene. The dealer
 9. Profile badges and titles
 10. Private tables and clubs
 11. Season pass
+12. Dealer Ceremonies as expensive after-hand social events
 
-## What AURUM v1 must not sell
+## What AURUM v1 must not sell as normal skins
 
 1. Dealer masks
 2. New dealers
@@ -47,6 +50,24 @@ assets/shop/card_backs/royal_gold/
   preview.png
   card_back.png
 ```
+
+## Dealer Ceremony folder rule
+
+Dealer Ceremonies need a full seat-targeted video pack:
+
+```text
+assets/shop/dealer_ceremonies/royal_respect/
+  manifest.json
+  preview.png
+  poster.png
+  seat_0.mp4
+  seat_1.mp4
+  seat_2.mp4
+  seat_3.mp4
+  seat_4.mp4
+```
+
+See `docs/DEALER_CEREMONIES.md` for the full rule.
 
 ## Manifest example
 
@@ -82,6 +103,8 @@ Later, on a real server, this scan can run automatically at server startup or in
 ## Runtime layers
 
 - `src/content/aurumContentSystem.js` contains the content types, manifest validation, registry, shop catalog helpers, inventory helpers, loadout helpers and renderer hooks.
+- `src/content/premiumEvents.js` contains the first constants for premium after-hand dealer reaction events.
+- `src/content/premiumEventConfig.js` contains the seat/asset config for dealer reactions.
 - `scripts/generate-content-catalog.mjs` scans `assets/shop/**/manifest.json` and writes the generated catalog.
 - `scripts/validate-content.mjs` validates the content folder without writing the catalog.
 
@@ -96,6 +119,8 @@ The calibrator sets fixed zones on the poker table:
 - pot zone
 - action button zone
 
-A shop item never owns table position. It only provides the asset/effect placed into an already calibrated zone.
+A normal shop item never owns table position. It only provides the asset/effect placed into an already calibrated zone.
 
-This lets AURUM add unlimited sellable overlay content without recalibrating every item.
+Dealer Ceremonies are different: they are short after-hand scene overlays. They temporarily replace or overlay the idle room video, then the table returns to the normal idle loop.
+
+This lets AURUM add unlimited sellable overlay content without recalibrating every item, while still supporting rare premium video moments.
