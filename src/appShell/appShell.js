@@ -9,7 +9,6 @@ const state = {
   active: 'home',
   coins: 125450,
   player: 'SERGEY',
-  owned: ['Royal Gold Card Back'],
   selected: {
     cardBack: 'Royal Gold',
     frame: 'Obsidian VIP',
@@ -21,11 +20,18 @@ const state = {
 };
 
 const tabs = [
-  { id: 'home', label: 'Главная', icon: '◆' },
-  { id: 'play', label: 'Играть', icon: '♠' },
-  { id: 'shop', label: 'Магазин', icon: '✦' },
-  { id: 'inventory', label: 'Инвентарь', icon: '◈' },
-  { id: 'profile', label: 'Профиль', icon: '●' }
+  { id: 'home', label: 'Главная', icon: 'home' },
+  { id: 'play', label: 'Играть', icon: 'cards' },
+  { id: 'shop', label: 'Магазин', icon: 'cart' },
+  { id: 'inventory', label: 'Инвентарь', icon: 'diamond' },
+  { id: 'profile', label: 'Профиль', icon: 'profile' }
+];
+
+const homeActions = [
+  { title: 'Быстрый стол', text: 'Сесть и играть', icon: 'chip', action: 'play' },
+  { title: 'Приватный стол', text: 'Создать или войти', icon: 'lock', action: 'play' },
+  { title: 'Магазин', text: 'Эксклюзивные предметы', icon: 'bag', action: 'shop' },
+  { title: 'Профиль', text: 'Статистика и настройки', icon: 'profile', action: 'profile' }
 ];
 
 const shopItems = [
@@ -38,6 +44,10 @@ const shopItems = [
 
 function money(value) {
   return new Intl.NumberFormat('ru-RU').format(value);
+}
+
+function icon(name) {
+  return `<span class="aurum-icon aurum-icon-${name}" aria-hidden="true"></span>`;
 }
 
 function createMediaLayer() {
@@ -77,7 +87,8 @@ function topbar() {
     <header class="aurum-topbar">
       <div class="aurum-avatar">A</div>
       <button class="aurum-balance" data-action="shop">
-        <span><small>AURUM COINS</small><strong>${money(state.coins)}</strong></span>
+        <span class="coin-medallion">✦</span>
+        <span class="balance-copy"><small>AURUM COINS</small><strong>${money(state.coins)}</strong></span>
         <b class="aurum-plus">+</b>
       </button>
       <button class="aurum-alert">⌁</button>
@@ -89,23 +100,44 @@ function homeScreen() {
   return `
     <section class="aurum-content home-content">
       <div class="brand-block">
-        <div class="brand-kicker">PRIVATE POKER CLUB</div>
+        <div class="brand-star">✦</div>
         <h1 class="brand-title">AURUM</h1>
-        <p class="brand-subtitle">Приватный покерный клуб</p>
+        <div class="brand-kicker">PRIVATE POKER CLUB</div>
+        <p class="brand-welcome">Добро пожаловать в AURUM</p>
+        <p class="brand-subtitle">Ваш приватный покерный клуб</p>
       </div>
-      <button class="primary-cta" data-action="play">Быстрый вход</button>
-      <div class="card-stack">
-        <article class="aurum-wide-card">
-          <div><strong>BLACK PASS LVL 7</strong><span>VIP прогресс 7 250 / 10 000</span></div>
-          <div class="pass-progress"><i></i></div>
-        </article>
-        <article class="aurum-wide-card">
-          <div><strong>Ежедневный бонус</strong><span>Забери награду за вход сегодня.</span></div>
-        </article>
-        <article class="aurum-wide-card">
-          <div><strong>Dealer Ceremony</strong><span>Премиальная реакция после руки.</span></div>
-        </article>
+
+      <button class="primary-cta" data-action="play">
+        <span>Быстрый вход</span>
+        <b>›</b>
+      </button>
+
+      <div class="home-action-grid">
+        ${homeActions.map(item => `
+          <button class="home-action-card" data-action="${item.action}">
+            ${icon(item.icon)}
+            <span><strong>${item.title}</strong><small>${item.text}</small></span>
+            <em>›</em>
+          </button>
+        `).join('')}
       </div>
+
+      <article class="vip-pass-card">
+        <div class="vip-ticket"><b>VIP</b><small>BLACK PASS</small></div>
+        <div class="vip-copy"><strong>VIP BLACK PASS</strong><span>Эксклюзивные привилегии для избранных</span></div>
+        <div class="vip-arrow">›</div>
+      </article>
+
+      <article class="daily-bonus-card">
+        ${icon('gift')}
+        <div><strong>Ежедневный бонус</strong><span>Заходите каждый день и получайте награды!</span></div>
+        <time>12:45:32</time>
+      </article>
+
+      <article class="dealer-ceremony-card">
+        <strong>Dealer Ceremony</strong>
+        <span>Премиальная реакция после руки</span>
+      </article>
     </section>
   `;
 }
@@ -118,13 +150,13 @@ function playScreen() {
     ['Войти по коду', 'Подключиться к закрытому столу'],
     ['Клубные столы', 'Игры внутри приватных клубов']
   ];
-  return screenList('Играть', 'Пока это меню входа. Позже здесь будет подбор стола и мультиплеер.', items);
+  return screenList('Играть', 'Подбор стола и приватные комнаты.', items);
 }
 
 function shopScreen() {
   return `
-    <section class="aurum-content">
-      <div class="screen-title"><h2>Магазин</h2><p>Покупка визуальных предметов и премиальных событий.</p></div>
+    <section class="aurum-content inner-content">
+      <div class="screen-title"><h2>Магазин</h2><p>Визуальные предметы и премиальные события.</p></div>
       <div class="list-panel">
         ${shopItems.map(([name, desc, price]) => `
           <article class="product-card">
@@ -146,7 +178,7 @@ function inventoryScreen() {
     ['Эффект победы', state.selected.winnerEffect],
     ['Церемонии дилера', state.selected.dealerCeremony]
   ];
-  return screenList('Инвентарь', 'Здесь игрок выбирает купленные предметы и активный стиль.', items, 'state');
+  return screenList('Инвентарь', 'Купленные предметы и активный стиль.', items, 'state');
 }
 
 function profileScreen() {
@@ -155,14 +187,14 @@ function profileScreen() {
     ['Уровень', 'Black Pass LVL 7'],
     ['Статистика', 'Скоро: руки, победы, стиль игры'],
     ['Клуб', 'AURUM Private Club'],
-    ['Настройки', 'Звук, видеофон, качество, аккаунт']
+    ['Настройки', 'Звук, фон, качество, аккаунт']
   ];
   return screenList('Профиль', 'Аккаунт игрока и настройки приложения.', items, 'state');
 }
 
 function screenList(title, subtitle, items, mode = 'arrow') {
   return `
-    <section class="aurum-content">
+    <section class="aurum-content inner-content">
       <div class="screen-title"><h2>${title}</h2><p>${subtitle}</p></div>
       <div class="list-panel">
         ${items.map(([name, desc]) => `
@@ -200,7 +232,7 @@ function render() {
     <nav class="bottom-nav">
       ${tabs.map(tab => `
         <button class="nav-item ${tab.id === state.active ? 'is-active' : ''}" data-tab="${tab.id}">
-          <span class="icon">${tab.icon}</span>
+          ${icon(tab.icon)}
           <span>${tab.label}</span>
         </button>
       `).join('')}
@@ -216,17 +248,13 @@ function render() {
     });
   });
 
-  root.querySelectorAll('[data-action="play"]').forEach(button => {
+  root.querySelectorAll('[data-action]').forEach(button => {
     button.addEventListener('click', () => {
-      state.active = 'play';
-      render();
-    });
-  });
-
-  root.querySelectorAll('[data-action="shop"]').forEach(button => {
-    button.addEventListener('click', () => {
-      state.active = 'shop';
-      render();
+      const next = button.dataset.action;
+      if (next === 'play' || next === 'shop' || next === 'profile') {
+        state.active = next;
+        render();
+      }
     });
   });
 }
