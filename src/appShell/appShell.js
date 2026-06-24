@@ -124,7 +124,7 @@ function homeScreen() {
 
       <article class="vip-pass-card">
         <div class="vip-ticket"><b>VIP</b><small>BLACK PASS</small></div>
-        <div class="vip-copy"><strong>VIP BLACK PASS</strong><span>Эксклюзивные привилегии для избранных</span></div>
+        <div class="vip-copy"><strong>VIP BLACK PASS</strong><span>Эксклюзивные привилегии для избранных</span><small>Dealer Ceremony inside</small></div>
         <div class="vip-arrow">›</div>
       </article>
 
@@ -132,11 +132,6 @@ function homeScreen() {
         ${icon('gift')}
         <div><strong>Ежедневный бонус</strong><span>Заходите каждый день и получайте награды!</span></div>
         <time>12:45:32</time>
-      </article>
-
-      <article class="dealer-ceremony-card">
-        <strong>Dealer Ceremony</strong>
-        <span>Премиальная реакция после руки</span>
       </article>
     </section>
   `;
