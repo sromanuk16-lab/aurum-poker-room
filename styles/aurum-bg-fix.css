@@ -1,0 +1,61 @@
+/* AURUM premium background override
+   Keeps the vertical 9:16 background visible on desktop and mobile.
+*/
+
+.aurum-shell {
+  background: #050403 !important;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.aurum-media-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurum-bg-media,
+.aurum-bg-fallback,
+.aurum-bg-shade,
+.aurum-bg-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.aurum-bg-fallback {
+  background-image: var(--aurum-home-bg-image) !important;
+  background-repeat: no-repeat !important;
+  background-size: auto 100% !important;
+  background-position: center top !important;
+  opacity: 1 !important;
+  filter: saturate(1.06) contrast(1.08) brightness(0.96) !important;
+}
+
+.aurum-bg-shade {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.06) 32%, rgba(0,0,0,0.36) 72%, rgba(0,0,0,0.68) 100%),
+    radial-gradient(ellipse at center, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.10) 55%, rgba(0,0,0,0.54) 100%) !important;
+}
+
+.aurum-bg-noise {
+  opacity: 0.035 !important;
+}
+
+.aurum-screen {
+  position: relative;
+  z-index: 2;
+}
+
+.bottom-nav {
+  z-index: 10;
+}
+
+@media (max-width: 700px) {
+  .aurum-bg-fallback {
+    background-size: cover !important;
+    background-position: center top !important;
+  }
+}
