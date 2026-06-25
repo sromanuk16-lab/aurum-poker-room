@@ -255,4 +255,14 @@ function render() {
   });
 }
 
+function registerAurumServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js?v=20260625-pwa-1').catch(error => {
+      console.warn('AURUM service worker registration failed:', error);
+    });
+  });
+}
+
 render();
+registerAurumServiceWorker();
