@@ -1,0 +1,38 @@
+/* Hard fallback for the premium dealer background.
+   This bypasses CSS variable / PWA cache weirdness and paints the same asset directly. */
+
+.aurum-shell {
+  background-color: #050403 !important;
+  background-image:
+    linear-gradient(180deg, rgba(5,4,3,.14) 0%, rgba(5,4,3,.10) 34%, rgba(5,4,3,.74) 72%, #020201 100%),
+    url("../assets/app/backgrounds/home-bg-premium-mobile.webp") !important;
+  background-size: cover, cover !important;
+  background-position: center top, center top !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+
+.aurum-bg-fallback {
+  z-index: 0 !important;
+  display: block !important;
+  opacity: .98 !important;
+  background-image: url("../assets/app/backgrounds/home-bg-premium-mobile.webp") !important;
+  background-size: cover !important;
+  background-position: 50% 0% !important;
+  background-repeat: no-repeat !important;
+}
+
+.aurum-bg-shade {
+  z-index: 1 !important;
+  background:
+    linear-gradient(180deg,
+      rgba(5,4,3,.18) 0%,
+      rgba(5,4,3,.03) 18%,
+      rgba(5,4,3,.08) 38%,
+      rgba(5,4,3,.72) 72%,
+      rgba(5,4,3,.96) 92%,
+      #020201 100%),
+    radial-gradient(100% 56% at 50% 18%, rgba(228,160,60,.14), transparent 62%) !important;
+}
+
+.aurum-bg-noise { z-index: 1 !important; }
+.aurum-screen { z-index: 2 !important; }
