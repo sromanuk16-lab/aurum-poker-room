@@ -5,8 +5,6 @@ const AURUM_MEDIA = {
   posterUrl: 'assets/app/backgrounds/home-bg-premium-mobile.webp'
 };
 
-const HOME_ART_URL = 'assets/app/screens/home/home-main.webp';
-
 const state = {
   active: 'home',
   coins: 125450,
@@ -95,35 +93,6 @@ function topbar() {
       </button>
       <button class="aurum-alert">⌁</button>
     </header>
-  `;
-}
-
-function homeArtScreen() {
-  return `
-    <section class="home-art-screen" aria-label="AURUM Private Poker Club">
-      <img class="home-art-img" src="${HOME_ART_URL}" alt="AURUM Private Poker Club">
-
-      <div class="home-art-live home-art-balance">${money(state.coins)}</div>
-      <div class="home-art-live home-art-timer">12:45:32</div>
-
-      <button class="art-hotspot art-top-avatar" data-tab="profile" aria-label="Профиль"></button>
-      <button class="art-hotspot art-top-balance" data-tab="shop" aria-label="Пополнить баланс"></button>
-      <button class="art-hotspot art-top-bell" data-tab="profile" aria-label="Уведомления"></button>
-
-      <button class="art-hotspot art-quick-entry" data-tab="play" aria-label="Быстрый вход"></button>
-      <button class="art-hotspot art-quick-table" data-tab="play" aria-label="Быстрый стол"></button>
-      <button class="art-hotspot art-private-table" data-tab="play" aria-label="Приватный стол"></button>
-      <button class="art-hotspot art-shop" data-tab="shop" aria-label="Магазин"></button>
-      <button class="art-hotspot art-profile" data-tab="profile" aria-label="Профиль"></button>
-      <button class="art-hotspot art-vip" data-tab="shop" aria-label="VIP Black Pass"></button>
-      <button class="art-hotspot art-bonus" data-tab="shop" aria-label="Ежедневный бонус"></button>
-
-      <button class="art-hotspot art-nav-home" data-tab="home" aria-label="Главная"></button>
-      <button class="art-hotspot art-nav-play" data-tab="play" aria-label="Играть"></button>
-      <button class="art-hotspot art-nav-shop" data-tab="shop" aria-label="Магазин"></button>
-      <button class="art-hotspot art-nav-inventory" data-tab="inventory" aria-label="Инвентарь"></button>
-      <button class="art-hotspot art-nav-profile" data-tab="profile" aria-label="Профиль"></button>
-    </section>
   `;
 }
 
@@ -248,65 +217,45 @@ function setActiveTab(next) {
   render();
 }
 
-function bindInteractions(root) {
-  root.querySelectorAll('[data-tab]').forEach(button => {
-    button.addEventListener('click', event => {
-      event.preventDefault();
-      const next = button.dataset.tab;
-      if (button.classList.contains('art-hotspot')) {
-        button.classList.add('is-pressed');
-        if (navigator.vibrate) navigator.vibrate(8);
-        window.setTimeout(() => setActiveTab(next), 110);
-      } else {
-        setActiveTab(next);
-      }
-    });
-  });
-
-  root.querySelectorAll('[data-action]').forEach(button => {
-    button.addEventListener('click', () => {
-      const next = button.dataset.action;
-      setActiveTab(next);
-    });
-  });
-}
-
 function render() {
   const root = document.getElementById('aurumAppRoot');
   if (!root) return;
   root.innerHTML = '';
 
   const shell = document.createElement('main');
-  shell.className = state.active === 'home' ? 'aurum-shell aurum-art-shell' : 'aurum-shell';
+  shell.className = 'aurum-shell';
+  shell.appendChild(createMediaLayer());
 
-  if (state.active === 'home') {
-    shell.innerHTML = homeArtScreen();
-  } else {
-    shell.appendChild(createMediaLayer());
-    shell.insertAdjacentHTML('beforeend', `
-      <div class="aurum-screen">
-        ${topbar()}
-        ${currentScreen()}
-      </div>
-      <nav class="bottom-nav">
-        ${tabs.map(tab => `
-          <button class="nav-item ${tab.id === state.active ? 'is-active' : ''}" data-tab="${tab.id}">
-            ${icon(tab.icon)}
-            <span>${tab.label}</span>
-          </button>
-        `).join('')}
-      </nav>
-    `);
-  }
+  shell.insertAdjacentHTML('beforeend', `
+    <div class="aurum-screen">
+      ${topbar()}
+      ${currentScreen()}
+    </div>
+    <nav class="bottom-nav">
+      ${tabs.map(tab => `
+        <button class="nav-item ${tab.id === state.active ? 'is-active' : ''}" data-tab="${tab.id}">
+          ${icon(tab.icon)}
+          <span>${tab.label}</span>
+        </button>
+      `).join('')}
+    </nav>
+  `);
 
   root.appendChild(shell);
-  bindInteractions(root);
+
+  root.querySelectorAll('[data-tab]').forEach(button => {
+    button.addEventListener('click', () => setActiveTab(button.dataset.tab));
+  });
+
+  root.querySelectorAll('[data-action]').forEach(button => {
+    button.addEventListener('click', () => setActiveTab(button.dataset.action));
+  });
 }
 
 function registerAurumServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js?v=20260625-art-1').catch(error => {
+    navigator.serviceWorker.register('./sw.js?v=20260625-standard-1').catch(error => {
       console.warn('AURUM service worker registration failed:', error);
     });
   });
