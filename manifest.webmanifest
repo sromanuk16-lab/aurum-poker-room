@@ -1,10 +1,20 @@
 {
   "name": "AURUM Poker Room",
   "short_name": "AURUM",
-  "start_url": ".",
+  "description": "AURUM Private Poker Club",
+  "start_url": "./app.html?source=pwa",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#050403",
+  "display_override": ["standalone", "fullscreen"],
+  "orientation": "portrait",
   "theme_color": "#050403",
-  "orientation": "landscape",
-  "icons": []
+  "background_color": "#050403",
+  "icons": [
+    {
+      "src": "assets/app/icons/aurum-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
