@@ -122,43 +122,42 @@ function homeScreen() {
         `).join('')}
       </div>
 
-      <button class="vip-strip" data-action="shop">
-        <span class="vip-card-art">VIP<br><small>BLACK PASS</small></span>
-        <span><strong>VIP BLACK PASS</strong><small>Эксклюзивные привилегии для избранных</small></span>
-        <em>›</em>
-      </button>
+      <article class="vip-pass-card">
+        <div class="vip-ticket"><b>VIP</b><small>BLACK PASS</small></div>
+        <div class="vip-copy"><strong>VIP BLACK PASS</strong><span>Эксклюзивные привилегии для избранных</span><small>Dealer Ceremony inside</small></div>
+        <div class="vip-arrow">›</div>
+      </article>
 
-      <button class="bonus-strip" data-action="shop">
+      <article class="daily-bonus-card">
         ${icon('gift')}
-        <span><strong>Ежедневный бонус</strong><small>Забери награду за вход сегодня.</small></span>
-        <b>12:45:32</b>
-      </button>
+        <div><strong>Ежедневный бонус</strong><span>Заходите каждый день и получайте награды!</span></div>
+        <time>12:45:32</time>
+      </article>
     </section>
   `;
 }
 
 function playScreen() {
-  return `
-    <section class="aurum-content pane-content">
-      <h2>Играть</h2>
-      <p>Выберите режим игры</p>
-      <button class="wide-card">${icon('chip')}<span><strong>Быстрый стол</strong><small>Сесть за свободный стол</small></span><em>›</em></button>
-      <button class="wide-card">${icon('lock')}<span><strong>Приватный стол</strong><small>Создать комнату или войти по коду</small></span><em>›</em></button>
-      <div class="limit-row"><button>0.5 / 1<small>Вход от 50</small></button><button>1 / 2<small>Вход от 100</small></button><button>2 / 5<small>Вход от 250</small></button></div>
-      <button class="wide-card muted">${icon('trophy')}<span><strong>Турниры</strong><small>Скоро</small></span></button>
-    </section>
-  `;
+  const items = [
+    ['Быстрый стол', 'Сесть за свободный стол'],
+    ['Приватный стол', 'Создать комнату или войти по коду'],
+    ['Свободные столы', 'Выбрать лимит и место'],
+    ['Турниры', 'Скоро'],
+    ['VIP Black Pass', 'Предметы, статусы и церемонии дилера']
+  ];
+  return screenList('Играть', 'Выберите режим игры.', items);
 }
 
 function shopScreen() {
   return `
-    <section class="aurum-content pane-content">
-      <h2>Магазин</h2>
-      <p>Эксклюзивные предметы и привилегии</p>
-      <button class="feature-card"><strong>VIP BLACK PASS</strong><small>Еженедельные бонусы, стиль и статус</small></button>
-      <div class="shop-grid">
-        ${shopItems.map(([name, type, price]) => `
-          <article><b>${name}</b><small>${type}</small><em>${price}</em></article>
+    <section class="aurum-content inner-content">
+      <div class="screen-title"><h2>Магазин</h2><p>Визуальные предметы и премиальные события.</p></div>
+      <div class="list-panel">
+        ${shopItems.map(([name, desc, price]) => `
+          <article class="product-card">
+            <div><strong>${name}</strong><span>${desc}</span></div>
+            <div class="price-pill">${price}</div>
+          </article>
         `).join('')}
       </div>
     </section>
@@ -166,33 +165,45 @@ function shopScreen() {
 }
 
 function inventoryScreen() {
-  return `
-    <section class="aurum-content pane-content">
-      <h2>Инвентарь</h2>
-      <p>Ваши предметы и активный стиль</p>
-      <div class="equipped-card">
-        ${Object.entries(state.selected).map(([key, value]) => `<span><small>${key}</small><strong>${value}</strong></span>`).join('')}
-      </div>
-      <button class="wide-card">${icon('mask')}<span><strong>Церемонии дилера</strong><small>Доступные реакции после руки</small></span><em>›</em></button>
-      <button class="wide-card">${icon('cards')}<span><strong>Карты и эффекты</strong><small>Рубашки, ауры, победные эффекты</small></span><em>›</em></button>
-    </section>
-  `;
+  const items = [
+    ['Рубашка карт', state.selected.cardBack],
+    ['Рамка игрока', state.selected.frame],
+    ['Кнопка дилера', state.selected.dealerButton],
+    ['Аура хода', state.selected.aura],
+    ['Эффект победы', state.selected.winnerEffect],
+    ['Церемонии дилера', state.selected.dealerCeremony]
+  ];
+  return screenList('Инвентарь', 'Купленные предметы и активный стиль.', items, 'state');
 }
 
 function profileScreen() {
+  const items = [
+    ['Ник', state.player],
+    ['Уровень', 'Black Pass LVL 7'],
+    ['Статистика', 'Скоро: руки, победы, стиль игры'],
+    ['Клуб', 'AURUM Private Club'],
+    ['Настройки', 'Звук, фон, качество, аккаунт']
+  ];
+  return screenList('Профиль', 'Аккаунт игрока и настройки приложения.', items, 'state');
+}
+
+function screenList(title, subtitle, items, mode = 'arrow') {
   return `
-    <section class="aurum-content pane-content">
-      <h2>Профиль</h2>
-      <p>Статус, достижения и настройки</p>
-      <div class="profile-hero"><div class="big-avatar">A</div><span><strong>Aurum Prestige</strong><small>Black Pass Member • уровень 7</small></span></div>
-      <div class="stats-row"><span><b>1860</b><small>Рейтинг</small></span><span><b>248</b><small>Побед</small></span><span><b>61%</b><small>Винрейт</small></span></div>
-      <button class="wide-card">${icon('profile')}<span><strong>Редактировать профиль</strong><small>Аватар, рамка и титул</small></span><em>›</em></button>
-      <button class="wide-card">${icon('bell')}<span><strong>Уведомления</strong><small>Настройки событий</small></span><em>›</em></button>
+    <section class="aurum-content inner-content">
+      <div class="screen-title"><h2>${title}</h2><p>${subtitle}</p></div>
+      <div class="list-panel">
+        ${items.map(([name, desc]) => `
+          <button class="list-button">
+            <span><strong>${name}</strong><span>${desc}</span></span>
+            <b class="${mode === 'state' ? 'state-pill' : 'price-pill'}">${mode === 'state' ? 'выбрано' : '›'}</b>
+          </button>
+        `).join('')}
+      </div>
     </section>
   `;
 }
 
-function renderScreen() {
+function currentScreen() {
   if (state.active === 'play') return playScreen();
   if (state.active === 'shop') return shopScreen();
   if (state.active === 'inventory') return inventoryScreen();
@@ -200,36 +211,48 @@ function renderScreen() {
   return homeScreen();
 }
 
-function bottomNav() {
-  return `
-    <nav class="aurum-bottom-nav">
-      ${tabs.map(tab => `<button class="${state.active === tab.id ? 'is-active' : ''}" data-tab="${tab.id}">${icon(tab.icon)}<span>${tab.label}</span></button>`).join('')}
-    </nav>
-  `;
-}
-
 function render() {
-  const app = document.getElementById('aurum-app');
-  app.innerHTML = '';
-  app.appendChild(createMediaLayer());
+  const root = document.getElementById('aurumAppRoot');
+  if (!root) return;
+  root.innerHTML = '';
+
   const shell = document.createElement('main');
   shell.className = 'aurum-shell';
-  shell.innerHTML = topbar() + renderScreen() + bottomNav();
-  app.appendChild(shell);
-}
+  shell.appendChild(createMediaLayer());
 
-document.addEventListener('click', event => {
-  const tab = event.target.closest('[data-tab]');
-  if (tab) {
-    state.active = tab.dataset.tab;
-    render();
-    return;
-  }
-  const action = event.target.closest('[data-action]');
-  if (action) {
-    state.active = action.dataset.action;
-    render();
-  }
-});
+  shell.insertAdjacentHTML('beforeend', `
+    <div class="aurum-screen">
+      ${topbar()}
+      ${currentScreen()}
+    </div>
+    <nav class="bottom-nav">
+      ${tabs.map(tab => `
+        <button class="nav-item ${tab.id === state.active ? 'is-active' : ''}" data-tab="${tab.id}">
+          ${icon(tab.icon)}
+          <span>${tab.label}</span>
+        </button>
+      `).join('')}
+    </nav>
+  `);
+
+  root.appendChild(shell);
+
+  root.querySelectorAll('[data-tab]').forEach(button => {
+    button.addEventListener('click', () => {
+      state.active = button.dataset.tab;
+      render();
+    });
+  });
+
+  root.querySelectorAll('[data-action]').forEach(button => {
+    button.addEventListener('click', () => {
+      const next = button.dataset.action;
+      if (next === 'play' || next === 'shop' || next === 'profile' || next === 'inventory') {
+        state.active = next;
+        render();
+      }
+    });
+  });
+}
 
 render();
