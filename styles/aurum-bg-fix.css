@@ -1,6 +1,6 @@
 /* AURUM premium background hard override
    Paints the generated dealer room directly on the shell.
-   Layout fix: create a clear dealer window between logo and welcome text.
+   Layout fix: keeps the dealer visible and makes top HUD/CTA closer to the reference.
 */
 
 html,
@@ -22,7 +22,6 @@ body,
   overflow: hidden;
 }
 
-/* Disable the old JS background/shade layer so nothing can hide the real image. */
 .aurum-media-wrap,
 .aurum-bg-media,
 .aurum-bg-fallback,
@@ -45,8 +44,6 @@ body,
   background: transparent !important;
 }
 
-/* The logo block was sitting directly over the dealer.
-   This reserves vertical space for the dealer while keeping the UI live text. */
 .home-content .brand-block {
   min-height: clamp(350px, 46dvh, 430px) !important;
   display: flex !important;
@@ -66,6 +63,11 @@ body,
   margin-bottom: 0 !important;
 }
 
+.primary-cta {
+  width: calc(100% - 28px) !important;
+  align-self: center !important;
+}
+
 .bottom-nav {
   z-index: 10;
 }
@@ -77,13 +79,103 @@ body,
     background-attachment: scroll !important;
   }
 
+  .aurum-screen {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: calc(8px + var(--safe-top)) !important;
+    gap: 8px !important;
+  }
+
+  .aurum-topbar {
+    grid-template-columns: 44px minmax(0, 1fr) 44px !important;
+    gap: 8px !important;
+    max-width: 390px !important;
+    margin: 0 auto 4px !important;
+  }
+
+  .aurum-avatar,
+  .aurum-alert {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 18px !important;
+  }
+
+  .aurum-balance {
+    height: 44px !important;
+    max-width: 238px !important;
+    justify-self: center !important;
+    padding: 5px 6px 5px 8px !important;
+    gap: 7px !important;
+  }
+
+  .coin-medallion {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .aurum-plus {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 19px !important;
+  }
+
+  .balance-copy small {
+    font-size: 8px !important;
+    letter-spacing: 0.13em !important;
+  }
+
+  .aurum-balance strong {
+    font-size: 20px !important;
+  }
+
+  .brand-star {
+    font-size: 24px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .brand-title {
+    font-size: clamp(56px, 15.2vw, 70px) !important;
+    letter-spacing: 0.045em !important;
+  }
+
+  .brand-kicker {
+    font-size: 10.5px !important;
+    letter-spacing: 0.28em !important;
+  }
+
   .home-content .brand-block {
-    min-height: clamp(300px, 41dvh, 365px) !important;
+    min-height: clamp(310px, 40dvh, 356px) !important;
+  }
+
+  .brand-welcome {
+    font-size: 15px !important;
+  }
+
+  .brand-subtitle {
+    font-size: 13px !important;
+  }
+
+  .primary-cta {
+    width: calc(100% - 30px) !important;
+    min-height: 60px !important;
+    border-radius: 21px !important;
+    font-size: clamp(23px, 6.4vw, 28px) !important;
+  }
+
+  .home-action-grid,
+  .vip-pass-card,
+  .daily-bonus-card {
+    width: calc(100% - 4px) !important;
+    align-self: center !important;
   }
 }
 
 @media (max-height: 760px) {
   .home-content .brand-block {
-    min-height: 292px !important;
+    min-height: 286px !important;
+  }
+
+  .primary-cta {
+    min-height: 58px !important;
   }
 }
