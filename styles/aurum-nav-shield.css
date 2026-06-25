@@ -1,0 +1,85 @@
+/* AURUM bottom navigation shield
+   Fixes iPhone scroll bleed: content/text must not remain visible under or below the fixed tab bar. */
+
+:root {
+  --aurum-bottom-nav-h: 74px;
+  --aurum-bottom-nav-gap: 12px;
+  --aurum-bottom-shield-h: calc(150px + var(--safe-bottom));
+}
+
+/* More room at the end of every screen so the last card can scroll above the tab bar. */
+.aurum-screen {
+  padding-bottom: calc(190px + var(--safe-bottom)) !important;
+}
+
+/* Fixed dark mask behind the tab bar and down to the physical bottom of the iPhone. */
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 24;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--aurum-bottom-shield-h);
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5,4,3,0) 0%,
+      rgba(5,4,3,.72) 22%,
+      rgba(5,4,3,.96) 48%,
+      #030201 100%
+    );
+}
+
+.bottom-nav {
+  z-index: 30 !important;
+  min-height: var(--aurum-bottom-nav-h) !important;
+  background: rgba(5, 4, 3, .988) !important;
+  border-color: rgba(232, 176, 77, .38) !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
+  backdrop-filter: blur(24px) saturate(120%) !important;
+}
+
+/* Opaque internal plate. This is what actually blocks text from being readable through the glass effect. */
+.bottom-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(90% 110% at 50% 0%, rgba(91, 62, 18, .26), transparent 55%),
+    linear-gradient(180deg, rgba(13,10,6,.995), rgba(3,2,1,.998));
+}
+
+/* Soft fade above the tab bar so scrolling content disappears before it touches the plate. */
+.bottom-nav::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--aurum-bottom-nav-gap) + var(--safe-bottom) + var(--aurum-bottom-nav-h) - 4px);
+  height: 38px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(5,4,3,0), rgba(5,4,3,.94));
+}
+
+.nav-item {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+@media (max-width: 380px) {
+  :root {
+    --aurum-bottom-shield-h: calc(146px + var(--safe-bottom));
+  }
+
+  .aurum-screen {
+    padding-bottom: calc(184px + var(--safe-bottom)) !important;
+  }
+}
