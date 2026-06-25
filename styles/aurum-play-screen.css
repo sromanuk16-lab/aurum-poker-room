@@ -1,0 +1,353 @@
+/* AURUM premium Play screen only.
+   Does not touch the Home layout. */
+
+.play-screen {
+  gap: 14px;
+}
+
+.play-head {
+  text-align: center;
+  padding: 8px 4px 2px;
+}
+
+.play-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(34px, 9vw, 46px);
+  line-height: 1;
+  letter-spacing: .1em;
+  background: linear-gradient(180deg, #fff4c8, #e8c074 55%, #a8731f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 4px 18px rgba(0,0,0,.5);
+}
+
+.play-title .orn {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: #c9a256;
+  position: relative;
+  -webkit-text-fill-color: initial;
+}
+
+.play-title .orn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.play-title .orn::before,
+.play-title .orn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,162,86,.8));
+}
+
+.play-title .orn::before { right: 24px; }
+.play-title .orn::after {
+  left: 24px;
+  background: linear-gradient(270deg, transparent, rgba(201,162,86,.8));
+}
+
+.play-head p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+.play-card {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 22px;
+  text-align: left;
+  min-height: 128px;
+}
+
+.pc-media {
+  position: relative;
+  width: 118px;
+  height: 100px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(216,154,60,.28);
+  background: #0a0806 center / cover no-repeat var(--tile);
+  box-shadow: inset 0 0 30px rgba(0,0,0,.7);
+}
+
+.pc-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, transparent 30%, rgba(0,0,0,.55));
+}
+
+.pc-media--craft {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(214,166,75,.16), transparent 45%),
+    repeating-linear-gradient(135deg, rgba(214,166,75,.05) 0 2px, transparent 2px 9px),
+    linear-gradient(160deg, #15110b, #070504);
+}
+
+.pc-icon {
+  position: relative;
+  z-index: 1;
+  width: 74px;
+  height: 74px;
+  color: var(--gold-soft);
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.6)) drop-shadow(0 0 16px rgba(214,166,75,.3));
+}
+
+.pc-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.pc-body {
+  min-width: 0;
+}
+
+.pc-body strong {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(22px, 6vw, 28px);
+  line-height: 1.04;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #f1d489;
+  text-shadow: 0 2px 10px rgba(0,0,0,.5);
+}
+
+.pc-body small {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255,240,210,.66);
+  font-size: 13.5px;
+  line-height: 1.25;
+}
+
+.pc-chev {
+  flex: 0 0 auto;
+  color: var(--gold-soft);
+  display: grid;
+  place-items: center;
+}
+
+.pc-chev svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cash-card {
+  padding: 16px;
+  border-radius: 22px;
+}
+
+.cash-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 10px;
+}
+
+.cash-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #f1d489;
+}
+
+.cash-ico {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  color: var(--gold-soft);
+}
+
+.cash-ico svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cash-all {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #d8b06a;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cash-all span {
+  display: grid;
+  place-items: center;
+}
+
+.cash-all span svg {
+  width: 16px;
+  height: 16px;
+}
+
+.stakes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.stake {
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  padding: 14px 6px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(216,154,60,.22);
+  background: rgba(8,6,4,.6);
+  transition: all .18s ease;
+}
+
+.stake-ico {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 3px;
+  opacity: .92;
+  color: var(--gold-soft);
+}
+
+.stake-ico svg {
+  width: 100%;
+  height: 100%;
+}
+
+.stake b {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text);
+  line-height: 1;
+}
+
+.stake small {
+  color: var(--muted);
+  font-size: 11.5px;
+  letter-spacing: .02em;
+}
+
+.stake:hover {
+  border-color: rgba(232,176,77,.45);
+}
+
+.stake.is-on {
+  border-color: rgba(244,212,137,.85);
+  background: rgba(214,166,75,.12);
+  box-shadow: 0 0 0 1px rgba(244,212,137,.4), 0 0 22px rgba(214,166,75,.28), inset 0 0 18px rgba(214,166,75,.1);
+}
+
+.stake.is-on b {
+  color: #ffe6a0;
+}
+
+.stake.is-on .stake-ico {
+  opacity: 1;
+}
+
+.tourney-card {
+  min-height: 120px;
+  grid-template-columns: 118px minmax(0, 1fr);
+}
+
+.tourney-card .pc-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.more-pill {
+  margin-top: 8px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  color: #e9c984;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(216,154,60,.45);
+  background: rgba(214,166,75,.06);
+  transition: all .18s ease;
+}
+
+.more-pill span {
+  display: grid;
+  place-items: center;
+}
+
+.more-pill span svg {
+  width: 14px;
+  height: 14px;
+}
+
+.more-pill:hover {
+  background: rgba(214,166,75,.15);
+  border-color: rgba(232,176,77,.7);
+}
+
+@media (max-width: 380px) {
+  .play-card {
+    grid-template-columns: 96px minmax(0, 1fr) auto;
+    gap: 11px;
+    padding: 12px;
+    min-height: 114px;
+  }
+
+  .pc-media {
+    width: 96px;
+    height: 88px;
+  }
+
+  .pc-icon {
+    width: 62px;
+    height: 62px;
+  }
+
+  .pc-body strong {
+    font-size: 21px;
+  }
+
+  .pc-body small {
+    font-size: 12.5px;
+  }
+
+  .stake b {
+    font-size: 18px;
+  }
+
+  .more-pill {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+}
