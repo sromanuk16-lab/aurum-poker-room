@@ -1,6 +1,6 @@
 /* AURUM premium background hard override
    Paints the generated dealer room directly on the shell.
-   Layout fix: keeps the dealer visible and makes top HUD/CTA closer to the reference.
+   Layout fix: keeps the dealer visible, tightens mobile HUD/CTA, and fixes bottom nav scroll bleed.
 */
 
 html,
@@ -19,7 +19,8 @@ body,
   background-position: center 42px !important;
   background-attachment: fixed !important;
   isolation: isolate;
-  overflow: hidden;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
 }
 
 .aurum-media-wrap,
@@ -36,6 +37,7 @@ body,
   position: relative;
   z-index: 2;
   background: transparent !important;
+  padding-bottom: calc(170px + var(--safe-bottom)) !important;
 }
 
 .brand-block,
@@ -69,7 +71,28 @@ body,
 }
 
 .bottom-nav {
-  z-index: 10;
+  position: fixed !important;
+  left: 50% !important;
+  bottom: calc(10px + var(--safe-bottom)) !important;
+  transform: translateX(-50%) !important;
+  z-index: 999 !important;
+  background: linear-gradient(180deg, rgba(12,9,6,0.985), rgba(3,2,1,0.995)) !important;
+  border-color: rgba(216,154,60,0.42) !important;
+  box-shadow: 0 0 0 999px rgba(0,0,0,0), 0 22px 55px rgba(0,0,0,0.82), inset 0 1px rgba(255,255,255,0.06) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.bottom-nav::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  right: -18px;
+  top: -54px;
+  bottom: -22px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(5,4,3,0), rgba(5,4,3,0.92) 48%, #050403 100%);
 }
 
 @media (max-width: 700px) {
@@ -83,6 +106,7 @@ body,
     padding-left: 20px !important;
     padding-right: 20px !important;
     padding-top: calc(8px + var(--safe-top)) !important;
+    padding-bottom: calc(164px + var(--safe-bottom)) !important;
     gap: 8px !important;
   }
 
