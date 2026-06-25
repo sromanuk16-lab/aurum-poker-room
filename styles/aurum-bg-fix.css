@@ -1,5 +1,5 @@
 /* AURUM premium background override
-   Keeps the vertical 9:16 background visible on desktop and mobile.
+   Goal: make the real generated background visible, including the dealer.
 */
 
 .aurum-shell {
@@ -9,9 +9,9 @@
 }
 
 .aurum-media-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
   pointer-events: none;
   overflow: hidden;
 }
@@ -20,33 +20,35 @@
 .aurum-bg-fallback,
 .aurum-bg-shade,
 .aurum-bg-noise {
-  position: absolute;
-  inset: 0;
+  position: fixed !important;
+  inset: 0 !important;
   pointer-events: none;
 }
 
 .aurum-bg-fallback {
   background-image: var(--aurum-home-bg-image) !important;
   background-repeat: no-repeat !important;
-  background-size: auto 100% !important;
-  background-position: center top !important;
+  background-size: auto 118% !important;
+  background-position: center -92px !important;
   opacity: 1 !important;
-  filter: saturate(1.06) contrast(1.08) brightness(0.96) !important;
+  filter: saturate(1.16) contrast(1.18) brightness(1.24) !important;
 }
 
+/* Almost no dark overlay now. Previous shade was hiding the dealer. */
 .aurum-bg-shade {
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.06) 32%, rgba(0,0,0,0.36) 72%, rgba(0,0,0,0.68) 100%),
-    radial-gradient(ellipse at center, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.10) 55%, rgba(0,0,0,0.54) 100%) !important;
+    linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.00) 34%, rgba(0,0,0,0.16) 72%, rgba(0,0,0,0.36) 100%),
+    radial-gradient(ellipse at center, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.05) 58%, rgba(0,0,0,0.34) 100%) !important;
 }
 
 .aurum-bg-noise {
-  opacity: 0.035 !important;
+  opacity: 0.018 !important;
 }
 
 .aurum-screen {
   position: relative;
   z-index: 2;
+  background: transparent !important;
 }
 
 .bottom-nav {
@@ -55,7 +57,8 @@
 
 @media (max-width: 700px) {
   .aurum-bg-fallback {
-    background-size: cover !important;
-    background-position: center top !important;
+    background-size: auto 112% !important;
+    background-position: center -58px !important;
+    filter: saturate(1.14) contrast(1.14) brightness(1.18) !important;
   }
 }
