@@ -1,48 +1,35 @@
-/* AURUM premium background override
-   Goal: make the real generated background visible, including the dealer.
+/* AURUM premium background hard override
+   This bypasses the JS media layer completely and paints the image directly on the shell.
 */
 
-.aurum-shell {
+html,
+body,
+#aurumAppRoot {
+  min-height: 100%;
   background: #050403 !important;
+}
+
+.aurum-shell {
+  min-height: 100dvh;
+  background-color: #050403 !important;
+  background-image: url("../assets/app/backgrounds/home-bg-premium-mobile.webp") !important;
+  background-repeat: no-repeat !important;
+  background-size: auto 118% !important;
+  background-position: center -92px !important;
+  background-attachment: fixed !important;
   isolation: isolate;
   overflow: hidden;
 }
 
-.aurum-media-wrap {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 0 !important;
-  pointer-events: none;
-  overflow: hidden;
-}
-
+/* Disable the old JS background/shade layer so nothing can hide the real image. */
+.aurum-media-wrap,
 .aurum-bg-media,
 .aurum-bg-fallback,
 .aurum-bg-shade,
 .aurum-bg-noise {
-  position: fixed !important;
-  inset: 0 !important;
-  pointer-events: none;
-}
-
-.aurum-bg-fallback {
-  background-image: var(--aurum-home-bg-image) !important;
-  background-repeat: no-repeat !important;
-  background-size: auto 118% !important;
-  background-position: center -92px !important;
-  opacity: 1 !important;
-  filter: saturate(1.16) contrast(1.18) brightness(1.24) !important;
-}
-
-/* Almost no dark overlay now. Previous shade was hiding the dealer. */
-.aurum-bg-shade {
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.00) 34%, rgba(0,0,0,0.16) 72%, rgba(0,0,0,0.36) 100%),
-    radial-gradient(ellipse at center, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.05) 58%, rgba(0,0,0,0.34) 100%) !important;
-}
-
-.aurum-bg-noise {
-  opacity: 0.018 !important;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 .aurum-screen {
@@ -51,14 +38,20 @@
   background: transparent !important;
 }
 
+.brand-block,
+.aurum-content,
+.home-content {
+  background: transparent !important;
+}
+
 .bottom-nav {
   z-index: 10;
 }
 
 @media (max-width: 700px) {
-  .aurum-bg-fallback {
-    background-size: auto 112% !important;
-    background-position: center -58px !important;
-    filter: saturate(1.14) contrast(1.14) brightness(1.18) !important;
+  .aurum-shell {
+    background-size: cover !important;
+    background-position: center top !important;
+    background-attachment: scroll !important;
   }
 }
