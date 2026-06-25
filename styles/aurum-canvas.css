@@ -1,0 +1,32 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050403;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#aurumCanvasRoot {
+  width: 100vw;
+  height: 100dvh;
+  background: #050403;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+#aurumCanvasRoot canvas {
+  display: block;
+  width: 100vw;
+  height: 100dvh;
+  background: #050403;
+  touch-action: none;
+}
