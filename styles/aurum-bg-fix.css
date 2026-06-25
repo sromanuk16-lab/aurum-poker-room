@@ -1,5 +1,6 @@
 /* AURUM premium background hard override
-   This bypasses the JS media layer completely and paints the image directly on the shell.
+   Paints the generated dealer room directly on the shell.
+   Composition fix: dealer is lowered so he is not hidden by the AURUM logo.
 */
 
 html,
@@ -14,8 +15,8 @@ body,
   background-color: #050403 !important;
   background-image: url("../assets/app/backgrounds/home-bg-premium-mobile.webp") !important;
   background-repeat: no-repeat !important;
-  background-size: auto 118% !important;
-  background-position: center -92px !important;
+  background-size: auto 112% !important;
+  background-position: center 42px !important;
   background-attachment: fixed !important;
   isolation: isolate;
   overflow: hidden;
