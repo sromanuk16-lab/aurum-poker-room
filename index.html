@@ -5,52 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#050403" />
   <title>AURUM Poker Room</title>
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles/main.css" />
-  <link rel="stylesheet" href="styles/premium-v2.css" />
+  <meta http-equiv="refresh" content="0; url=app.html?v=40" />
+  <script>
+    window.location.replace('app.html?v=40');
+  </script>
 </head>
-<body>
-  <main class="aurum-app">
-    <section class="room-stage">
-      <video id="roomVideo" class="room-video" autoplay muted loop playsinline preload="metadata" poster="assets/images/aurum-room-main.jpg">
-        <source src="assets/video/dealer_idle_loop.mp4" type="video/mp4" />
-      </video>
-
-      <div class="room-fallback" id="roomFallback"></div>
-      <div class="cinema-vignette"></div>
-
-      <header class="top-hud">
-        <div>
-          <div class="brand-kicker">AURUM</div>
-          <h1>Poker Room</h1>
-        </div>
-        <div class="status-pill" id="connectionStatus">LOCAL DEMO</div>
-      </header>
-
-      <section class="table-overlay">
-        <div class="pot-panel">
-          <span class="label">POT</span>
-          <strong id="potValue">3 750</strong>
-        </div>
-        <div class="street-panel" id="streetValue">FLOP</div>
-        <div class="community-slots" id="communitySlots"></div>
-
-        <div class="seat seat-top-left" data-seat="1"></div>
-        <div class="seat seat-top-right" data-seat="2"></div>
-        <div class="seat seat-left" data-seat="3"></div>
-        <div class="seat seat-right" data-seat="4"></div>
-        <div class="seat seat-bottom" data-seat="hero"></div>
-      </section>
-
-      <footer class="action-bar">
-        <button class="action danger" data-action="fold">Fold</button>
-        <button class="action" data-action="check">Check</button>
-        <button class="action primary" data-action="call">Call 500</button>
-        <button class="action gold" data-action="raise">Raise</button>
-      </footer>
-    </section>
+<body style="margin:0;background:#050403;color:#fff0d2;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px;">
+  <main>
+    <h1 style="font-family:Georgia,'Times New Roman',serif;letter-spacing:.08em;color:#ffe29a;">AURUM</h1>
+    <p>Открываем приложение...</p>
+    <p><a href="app.html?v=40" style="color:#ffe29a;">Открыть AURUM App</a></p>
   </main>
-
-  <script type="module" src="src/app.js"></script>
 </body>
 </html>
