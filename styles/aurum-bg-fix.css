@@ -1,6 +1,6 @@
 /* AURUM premium background hard override
    Paints the generated dealer room directly on the shell.
-   Composition fix: dealer is lowered so he is not hidden by the AURUM logo.
+   Layout fix: create a clear dealer window between logo and welcome text.
 */
 
 html,
@@ -45,6 +45,27 @@ body,
   background: transparent !important;
 }
 
+/* The logo block was sitting directly over the dealer.
+   This reserves vertical space for the dealer while keeping the UI live text. */
+.home-content .brand-block {
+  min-height: clamp(350px, 46dvh, 430px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-top: 4px !important;
+  padding-bottom: 0 !important;
+}
+
+.home-content .brand-welcome {
+  margin-top: auto !important;
+  margin-bottom: 2px !important;
+}
+
+.home-content .brand-subtitle {
+  margin-bottom: 0 !important;
+}
+
 .bottom-nav {
   z-index: 10;
 }
@@ -54,5 +75,15 @@ body,
     background-size: cover !important;
     background-position: center top !important;
     background-attachment: scroll !important;
+  }
+
+  .home-content .brand-block {
+    min-height: clamp(300px, 41dvh, 365px) !important;
+  }
+}
+
+@media (max-height: 760px) {
+  .home-content .brand-block {
+    min-height: 292px !important;
   }
 }
