@@ -1,11 +1,10 @@
-const CACHE_NAME = 'aurum-pwa-20260625-1';
+const CACHE_NAME = 'aurum-pwa-20260625-claude-1';
 
 const APP_SHELL = [
   './',
   './app.html',
   './manifest.webmanifest',
-  './styles/aurum-app-shell.css',
-  './styles/aurum-bg-fix.css',
+  './styles/aurum-claude-shell.css',
   './src/appShell/appShell.js',
   './assets/app/backgrounds/home-bg-premium-mobile.webp',
   './assets/app/icons/aurum-icon.svg'
