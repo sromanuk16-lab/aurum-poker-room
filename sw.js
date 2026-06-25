@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aurum-pwa-20260625-bg-rescue-1';
+const CACHE_NAME = 'aurum-pwa-20260625-play-1';
 
 const APP_SHELL = [
   './',
@@ -6,7 +6,9 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './styles/aurum-claude-shell.css',
   './styles/aurum-bg-rescue.css',
+  './styles/aurum-play-screen.css',
   './src/appShell/appShell.js',
+  './src/appShell/playScreenPremium.js',
   './assets/app/backgrounds/home-bg-premium-mobile.webp',
   './assets/app/icons/aurum-icon.svg'
 ];
